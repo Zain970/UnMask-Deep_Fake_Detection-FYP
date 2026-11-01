@@ -1,0 +1,104 @@
+# UnMask AI Model Weights Configuration
+
+# Model Paths
+models:
+  xception:
+    path: "weights/xception_model.h5"
+    input_shape: [299, 299, 3]
+    classes: 2
+    weights: "imagenet"
+  
+  efficientnet:
+    path: "weights/efficientnet_model.h5"
+    input_shape: [224, 224, 3]
+    classes: 2
+    weights: "imagenet"
+  
+  resnet:
+    path: "weights/resnet_model.h5"
+    input_shape: [224, 224, 3]
+    classes: 2
+    weights: "imagenet"
+
+# Face Detection Models
+face_detection:
+  mtcnn:
+    path: "weights/mtcnn_weights.npy"
+    min_face_size: 20
+    scale_factor: 0.709
+  
+  dlib:
+    path: "weights/shape_predictor_68_face_landmarks.dat"
+    model: "hog"  # or "cnn"
+
+# Feature Extraction
+feature_extraction:
+  landmarks:
+    model: "mediapipe"
+    path: "weights/face_landmarker.task"
+  
+  texture:
+    model: "lbp"
+    radius: 1
+    neighbors: 8
+  
+  temporal:
+    model: "optical_flow"
+    method: "farneback"
+
+# Model Settings
+settings:
+  batch_size: 32
+  learning_rate: 0.001
+  epochs: 100
+  early_stopping:
+    patience: 10
+    min_delta: 0.001
+  
+  # Data Augmentation
+  augmentation:
+    rotation_range: 20
+    width_shift_range: 0.2
+    height_shift_range: 0.2
+    horizontal_flip: true
+    zoom_range: 0.2
+  
+  # Preprocessing
+  preprocessing:
+    normalization: "imagenet"
+    resize_method: "bilinear"
+    color_space: "rgb"
+
+# Model Selection
+active_models:
+  primary: "xception"
+  secondary: "efficientnet"
+  ensemble:
+    - "xception"
+    - "efficientnet"
+    - "resnet"
+  
+  weights:
+    xception: 0.5
+    efficientnet: 0.3
+    resnet: 0.2
+
+# Performance Thresholds
+thresholds:
+  confidence: 0.85
+  iou: 0.5
+  min_face_size: 20
+  max_faces: 10
+
+# GPU Configuration
+gpu:
+  memory_fraction: 0.8
+  allow_growth: true
+  per_process_gpu_memory_fraction: 0.8
+
+# Model Updates
+updates:
+  check_interval: 86400  # 24 hours
+  auto_update: true
+  backup_versions: 3
+  validation_split: 0.2 

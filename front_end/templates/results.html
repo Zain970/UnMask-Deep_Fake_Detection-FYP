@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block title %}Results - UnMask{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto bg-white rounded-lg shadow-lg p-8">
+    <!-- Loading State -->
+    <div id="loading-state" class="text-center py-12">
+        <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-500 mx-auto mb-4"></div>
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">Processing Your Media</h2>
+        <p class="text-gray-600">This may take a few moments...</p>
+        <div class="mt-4">
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                <div id="processing-progress" class="bg-blue-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+            <p id="processing-status" class="text-sm text-gray-600 mt-2">Initializing analysis...</p>
+        </div>
+    </div>
+
+    <!-- Results Display -->
+    <div id="results-display" class="hidden">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Analysis Results</h1>
+            <div class="flex space-x-4">
+                <button id="download-report" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+                    Download Report
+                </button>
+                <button id="share-results" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition duration-300">
+                    Share Results
+                </button>
+            </div>
+        </div>
+
+        <!-- Media Preview -->
+        <div class="mb-8">
+            <div class="relative rounded-lg overflow-hidden bg-gray-100">
+                <div id="media-container" class="aspect-video">
+                    <!-- Media will be dynamically inserted -->
+                </div>
+                <div id="media-overlay" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+                    <button id="play-button" class="text-white hover:text-blue-400 transition duration-300">
+                        <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Results -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <!-- Detection Results -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Detection Results</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Deepfake Probability</span>
+                        <div class="flex items-center">
+                            <div class="w-32 h-2 bg-gray-200 rounded-full mr-2">
+                                <div id="deepfake-probability" class="h-2 rounded-full bg-red-500 transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <span id="deepfake-percentage" class="text-gray-800 font-medium">0%</span>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Confidence Level</span>
+                        <div class="flex items-center">
+                            <div class="w-32 h-2 bg-gray-200 rounded-full mr-2">
+                                <div id="confidence-level" class="h-2 rounded-full bg-blue-500 transition-all duration-300" style="width: 0%"></div>
+                            </div>
+                            <span id="confidence-percentage" class="text-gray-800 font-medium">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Details -->
+            <div class="bg-white rounded-lg shadow p-6">
+                <h2 class="text-xl font-semibold text-gray-800 mb-4">Analysis Details</h2>
+                <div class="space-y-4">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Model Used</span>
+                        <span id="model-used" class="text-gray-800 font-medium">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">Processing Time</span>
+                        <span id="processing-time" class="text-gray-800 font-medium">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">File Type</span>
+                        <span id="file-type" class="text-gray-800 font-medium">-</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600">File Size</span>
+                        <span id="file-size" class="text-gray-800 font-medium">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Analysis -->
+        <div class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Detailed Analysis</h2>
+            <div id="detailed-analysis" class="space-y-4">
+                <!-- Detailed analysis content will be dynamically inserted -->
+            </div>
+        </div>
+
+        <!-- Recommendations -->
+        <div class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Recommendations</h2>
+            <div id="recommendations" class="space-y-4">
+                <!-- Recommendations will be dynamically inserted -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="hidden text-center py-12">
+        <div class="text-red-500 mb-4">
+            <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+        </div>
+        <h2 class="text-xl font-semibold text-gray-800 mb-2">Analysis Failed</h2>
+        <p id="error-message" class="text-gray-600 mb-4">An error occurred while processing your media.</p>
+        <button id="retry-button" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300">
+            Try Again
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/results.js') }}"></script>
+{% endblock %} 

@@ -1,0 +1,117 @@
+/* Landing Page Styles */
+
+/* Hero Section */
+.hero-gradient {
+    background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+}
+
+.hero-image {
+    transform: perspective(1000px) rotateY(-5deg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.hero-image:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+/* Features Section */
+.feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+}
+
+/* How It Works Section */
+.step-circle {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.step-circle:hover {
+    transform: scale(1.1);
+    background-color: #bfdbfe;
+}
+
+/* CTA Section */
+.cta-button {
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.cta-button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;
+    }
+    
+    .feature-card {
+        margin-bottom: 2rem;
+    }
+    
+    .step-circle {
+        margin: 0 auto 1rem;
+    }
+}
+
+/* Custom Scrollbar for Landing Page */
+.landing-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.landing-scrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.landing-scrollbar::-webkit-scrollbar-thumb {
+    background: #3b82f6;
+    border-radius: 3px;
+}
+
+.landing-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #2563eb;
+} 
