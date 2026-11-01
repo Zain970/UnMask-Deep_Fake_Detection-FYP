@@ -15,7 +15,8 @@ By participating in this project, you agree to abide by our [Code of Conduct](CO
 3. Configure the upstream remote
 
 ```bash
-git remote add upstream https://github.com/BSM21/UNMASK.git
+git remote add upstream https://github.com/Zain970/UnMask-Deep_Fake_Detection-FYP
+
 ```
 
 ### 2. Set Up Development Environment

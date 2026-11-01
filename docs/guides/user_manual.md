@@ -151,7 +151,7 @@ Results can be exported as:
 ### Getting Help
 
 1. Check the [Troubleshooting Guide](troubleshooting.md)
-2. Contact support: bilal.saeed.malik123@gmail.com
+2. Contact support: bilal.saeed.malik123@gmail.com or zainulabidin970946@gmail.com
 3. Visit the [GitHub Issues](https://github.com/BSM21/UNMASK/issues)
 
 ## Security

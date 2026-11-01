@@ -62,7 +62,7 @@ UnMask is an advanced deep fake detection system that uses state-of-the-art AI m
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/BSM21/UNMASK.git
+   git clone https://github.com/Zain970/UnMask-Deep_Fake_Detection-FYP.git
    cd UnMask
    ```
 
