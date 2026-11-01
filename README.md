@@ -158,8 +158,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Project Link:** [https://github.com/BSM21/UNMASK](https://github.com/BSM21/UNMASK)
-- **Email:** bilal.saeed.malik123@gmail.com
+- **Project Link:** (https://github.com/Zain970/UnMask-Deep_Fake_Detection-FYP)
+- **Email:** bilal.saeed.malik123@gmail.com or zainulabidin970946@gmail.com
 
 ## 🙏 Acknowledgments
 
