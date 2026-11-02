@@ -279,5 +279,5 @@ logrotate /etc/logrotate.d/unmask
 
 For deployment support:
 
-- Email: bilal.saeed.malik123@gmail.com
-- GitHub Issues: https://github.com/BSM21/UNMASK/issues
+- Email: bilal.saeed.malik123@gmail.com or zainulabidin970946@gmail.com
+- GitHub Issues: https://github.com/Zain970/UnMask-Deep_Fake_Detection-FYP.git/issues

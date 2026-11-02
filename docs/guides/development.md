@@ -233,4 +233,4 @@ See [Deployment Guide](deployment.md) for detailed instructions.
 
 ### Getting Help
 
-- Email: bilal.saeed.malik123@gmail.com
+- Email: bilal.saeed.malik123@gmail.com or zainulabidin970946@gmail.com
